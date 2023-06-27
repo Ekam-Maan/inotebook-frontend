@@ -22,8 +22,10 @@ const NewNote = () => {
   }
 
   useEffect(()=>{
-    if(!localStorage.getItem('authToken'))
-        navigate('/login')
+    if(!localStorage.getItem('authToken')){
+      // eslint-disable-next-line
+      navigate('/login');
+    }
 },[])
 
 
