@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
-
     let location = useLocation();
     return (
         <div>
@@ -37,31 +36,26 @@ export default function Navbar() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link  className={`nav-link active=${location.pathname === '/about'}`} to="/about">
+                                <Link className={`nav-link active=${location.pathname === '/about'}`} to="/about">
                                     About
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link  className={`nav-link active=${location.pathname === '/newNote'}`} to="/newNote">
-                                New Note <i className="fa-sharp fa-solid fa-plus"></i>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link disabled">
-                                    Disabled
+                                <Link className={`nav-link active=${location.pathname === '/newNote'}`} to="/newNote">
+                                    New Note <i className="fa-sharp fa-solid fa-plus"></i>
                                 </Link>
                             </li>
                         </ul>
                         <form className="d-flex" role="search">
-                            {localStorage.getItem('authToken') ? <button className="btn btn-outline-danger" 
-                              onClick={()=>{localStorage.removeItem('authToken')}}>logout</button>: 
-                            <Link
-                                className="btn btn-outline-success mx-1"
-                                type="submit"
-                                to="/login"
-                            >
-                                Login
-                            </Link>
+                            {localStorage.getItem('authToken') ? <button className="btn btn-outline-danger"
+                                onClick={() => { localStorage.removeItem('authToken') }}>logout</button> :
+                                <Link
+                                    className="btn btn-outline-success mx-1"
+                                    type="submit"
+                                    to="/login"
+                                >
+                                    Login
+                                </Link>
                             }
                         </form>
                     </div>

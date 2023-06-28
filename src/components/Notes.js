@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import noteContext from "../contexts/noteContext"
-import NoteItem from './NoteItem';
 import { useNavigate } from 'react-router-dom';
-import Alerts from './Alerts';
-import alertContext from '../contexts/alertContext';
 
+import noteContext from "../contexts/noteContext"
+import NoteItem from "./NoteItem";
+import Alerts from "./Alerts";
+import alertContext from "../contexts/alertContext";
 
 const Notes = () => {
     let navigate = useNavigate();
@@ -12,6 +12,9 @@ const Notes = () => {
     const { notes, fetchAllNotes, editNote } = context;
     const contextAlert = useContext(alertContext);
     const {alert, showAlert} = contextAlert;
+    const ref = useRef(null)
+    const refClose = useRef(null)
+    const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
 
     useEffect(() => {
         if(localStorage.getItem('authToken'))
@@ -20,9 +23,6 @@ const Notes = () => {
             navigate('/login')
         // eslint-disable-next-line
     }, [])
-    const ref = useRef(null)
-    const refClose = useRef(null)
-    const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
 
     const updateNote = (currentNote) => {
         ref.current.click();
@@ -78,18 +78,15 @@ const Notes = () => {
             <Alerts alert={alert}/>
             <div className='container'>
             <div className="row my-3">
-         
                 <h1>Your Notes</h1>
                 <div className="container mx-2">
                     {notes.length === 0 && 'No notes to display'}
                 </div>
-                
                 {notes.map((note) => {
                     return <div className="col-lg-3 col-md-4 col-sm-6 my-3">
                                 <NoteItem key={note._id} updateNote={updateNote} note={note} />
                            </div>
                 })}
-
             </div>
             </div>
         </>

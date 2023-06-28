@@ -1,17 +1,15 @@
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-import Navbar from './components/Navbar';
-import About from './components/About';
-import Home from './components/Home';
-import NoteState from './contexts/noteState';
+import {BrowserRouter as Router, Routes, Route,
+}                 from      "react-router-dom";
+
+import Navbar     from   './components/Navbar';
+import About      from    './components/About';
+import Home       from     './components/Home';
+import NoteState  from  './contexts/noteState';
 import AlertState from './contexts/alertState';
-import NewNote from './components/NewNote';
-import Login from './components/Login';
-import Singup from './components/Singup';
+import NewNote    from  './components/NewNote';
+import Login      from    './components/Login';
+import Singup     from   './components/Singup';
 
 function App() {
   return (

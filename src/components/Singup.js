@@ -12,7 +12,7 @@ const Singup = () => {
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
-        //cjecking if the  re enter password is same.
+        //checking if the  re enter password is same.
         if(document.getElementById("password").value !== document.getElementById("cpassword").value){
             alert("passwords did not match. please enter again");
             document.getElementById("password").value = "";
@@ -25,13 +25,11 @@ const Singup = () => {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
-              // 'Content-Type': 'application/x-www-form-urlencoded',
+              "Content-Type": "application/json"
             },
             body: JSON.stringify({"name": registerData.name, "email": registerData.email, "password": registerData.password}), // body data type must match "Content-Type" header
 
         });
-
           const res = await response.json();
           if(res.success){
             localStorage.setItem('auth', res.authToken);
@@ -39,8 +37,6 @@ const Singup = () => {
           }else{
             alert(res.error);
           }
-          console.log(res);
-
     }
 
   return (
