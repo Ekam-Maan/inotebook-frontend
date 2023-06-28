@@ -1,18 +1,28 @@
 import React, { useRef, useContext, useState } from "react";
 import noteContext from "../contexts/noteContext";
+import Alerts from "./Alerts";
+import alertContext from "../contexts/alertContext";
 
 
 const EditNote = (props) => {
     const {note} = props;
+
     const closeButtonRef = useRef(null);
+
     const[newNote, setNewNote] = useState(note);
+
     const context = useContext(noteContext);
     const { editNote } = context;
+
+    const contextAlert = useContext(alertContext);
+    const {showAlert} = contextAlert;
 
     
 
     const handleSaveChanges = (e) =>{
         editNote(newNote._id, newNote.title, newNote.tag, newNote.description);
+        console.log("handle save changes");
+       
         closeButtonRef.current.click();
     }
     const handleValueChange = (e) => {

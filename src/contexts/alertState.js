@@ -6,12 +6,12 @@ const AlertState = (props) => {
     const [alert, setAlert] = useState({message: "", type: ""});
 
     const showAlert = (msg, type) =>{
-        console.log("yes i am there");
+        console.log("yes i am there alert");
         setAlert({message: msg, type: type });
         
         setTimeout(()=>{
             setAlert({message: "", type: ""});
-        }, 1500)
+        }, 2500)
     }
 
   return (

@@ -1,5 +1,6 @@
 import React, { useContext} from 'react'
 import noteContext from '../contexts/noteContext';
+import alertContext from '../contexts/alertContext';
 
 
 const NoteItem = (props) => {
@@ -8,14 +9,17 @@ const NoteItem = (props) => {
     const context = useContext(noteContext);
     const { deleteNote } = context;
  
-    
+    const contextAlert = useContext(alertContext);
+    const {showAlert} = contextAlert;
+
 
   
 
     const handleDeleteNote = () => {
-        if (window.confirm("Are you sure to delete the note?"))
+        if (window.confirm("Are you sure to delete the note?")){
             deleteNote(note._id);
-        console.log("Delete button presses");
+            showAlert("The note was deleted Successfully!", "warning")
+        }
     }
 
    

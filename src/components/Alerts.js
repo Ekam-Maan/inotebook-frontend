@@ -5,7 +5,7 @@ const Alerts = (props) => {
     return (
         <div style={{height: '50px'}}>
             <div class={`alert alert-${type} alert-dismissible fade show`} role="alert">
-                <strong>{type}</strong> {message}
+                {message}
             </div>
         </div>
     )

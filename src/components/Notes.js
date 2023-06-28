@@ -2,12 +2,17 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from "../contexts/noteContext"
 import NoteItem from './NoteItem';
 import { useNavigate } from 'react-router-dom';
+import Alerts from './Alerts';
+import alertContext from '../contexts/alertContext';
 
 
 const Notes = () => {
     let navigate = useNavigate();
     const context = useContext(noteContext);
     const { notes, fetchAllNotes, editNote } = context;
+    const contextAlert = useContext(alertContext);
+    const {alert, showAlert} = contextAlert;
+
     useEffect(() => {
         if(localStorage.getItem('authToken'))
              fetchAllNotes()
@@ -26,6 +31,7 @@ const Notes = () => {
 
     const handleClick = (e) => {
         editNote(note.id, note.etitle, note.edescription, note.etag)
+        showAlert("The edit was saved successfully!", "success");
         refClose.current.click();
     }
 
@@ -36,7 +42,7 @@ const Notes = () => {
     return (
         <>
             <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
+                Launch edit modal
             </button>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
@@ -69,19 +75,22 @@ const Notes = () => {
                     </div>
                 </div>
             </div>
-
+            <Alerts alert={alert}/>
+            <div className='container'>
             <div className="row my-3">
-                <h2>You Notes</h2>
+         
+                <h1>Your Notes</h1>
                 <div className="container mx-2">
                     {notes.length === 0 && 'No notes to display'}
                 </div>
-                <div className='contianer'>
+                
                 {notes.map((note) => {
                     return <div className="col-lg-3 col-md-4 col-sm-6 my-3">
                                 <NoteItem key={note._id} updateNote={updateNote} note={note} />
                            </div>
                 })}
-                </div>
+
+            </div>
             </div>
         </>
     )

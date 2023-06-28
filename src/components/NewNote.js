@@ -1,11 +1,17 @@
 import React, { useContext, useState, useEffect } from "react";
 import noteContext from "../contexts/noteContext";
 import { useNavigate } from "react-router-dom";
+import Alerts from "./Alerts";
+import alertContext from "../contexts/alertContext";
 
 const NewNote = () => {
 
   const context = useContext(noteContext)
   const { addNote } = context;
+  
+  const contextAlert = useContext(alertContext);
+  const {alert, showAlert} = contextAlert;
+
   const [note, setNote] = useState({ title: "", description: "", tag: "" })
   let navigate = useNavigate();
 
@@ -14,7 +20,7 @@ const NewNote = () => {
     console.log("new note handled");
     addNote(note.title, note.description, note.tag);
     document.getElementById('form').reset();
-    alert("Note Added Successfully.");
+    showAlert("The note was added sucessfully!", "success");
   }
 
   const handleValueChange = (e) => {
@@ -31,7 +37,10 @@ const NewNote = () => {
 
   return (
 
+    <>
+    <Alerts alert={alert}/>
     <div className="container">
+      
       {/* if user is not logged in redirect to login page */}
       <h1>Add a New Note</h1>
       <form id='form'>
@@ -89,6 +98,7 @@ const NewNote = () => {
         </button>
       </form>
     </div>
+    </>
   
   );
 };
