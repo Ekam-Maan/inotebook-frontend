@@ -7,7 +7,7 @@ const NewNote = () => {
   const context = useContext(noteContext)
   const { addNote } = context;
   const [note, setNote] = useState({ title: "", description: "", tag: "" })
-  const navigate = useNavigate();
+  let navigate = useNavigate();
 
   const handleAddNote = (event) => {
     event.preventDefault();
@@ -21,9 +21,9 @@ const NewNote = () => {
     setNote({ ...note, [e.target.name]: e.target.value })
   }
 
+  
   useEffect(()=>{
     if(!localStorage.getItem('authToken')){
-      // eslint-disable-next-line
       navigate('/login');
     }
 },[])
