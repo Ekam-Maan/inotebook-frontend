@@ -8,14 +8,13 @@ const Login = () => {
   let navigate = useNavigate();
   const contextAlert = useContext(alertContext);
   const { alert, showAlert } = contextAlert;
-  const host = "http://localhost:5000"
+  const host = "https://inotebook-m8lw.onrender.com"
 
   const onValueChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
 
   const handleLogin = async (e) => {
-    window.alert("hi!")
     e.preventDefault();
     const url = host + "/api/auth/login";
     const response = await fetch(url, {

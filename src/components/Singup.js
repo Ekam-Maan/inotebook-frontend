@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const Singup = () => {
     const navigate = useNavigate();
     const [registerData, setRegisterData] = useState({name: "", email: "", password: ""})
-    const host = "http://localhost:5000"
+    const host = "https://inotebook-m8lw.onrender.com"
 
     const onValueChange = (e) =>{
         setRegisterData({...registerData, [e.target.name]:e.target.value})
