@@ -15,6 +15,7 @@ const Login = () => {
   }
 
   const handleLogin = async (e) => {
+    document.getElementById('spinner').hidden = false;
     e.preventDefault();
     const url = host + "/api/auth/login";
     const response = await fetch(url, {
@@ -31,14 +32,20 @@ const Login = () => {
       localStorage.setItem('authToken', res.authToken);
       showAlert("Welcome Back! You have successfully logged in.", "success");
       navigate('/');
+      document.getElementById('spinner').hidden = true;
     } else {
       showAlert("Please enter valid credentials", "warning");
+      document.getElementById('spinner').hidden = true;
     }
+    
   }
 
   return (
     <>
       <Alerts alert={alert} />
+      <div class="spinner-border" id='spinner' hidden='true' role="status">
+          <span class="visually-hidden">Loading...</span>
+      </div>
 
       <div className='container'>
         <div className="row">
