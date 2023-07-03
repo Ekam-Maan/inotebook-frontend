@@ -4,15 +4,7 @@ import noteContext from "./noteContext";
 
 const NoteState = (props) =>{
     const host = "http://localhost:5000";
-    const intialNotes = [ {
-      "_id": "64a2626beb48e2ea4fd88f19",
-      "userId": "648940a9cfa2745c2423c8c1",
-      "title": "MyTitle3",
-      "description": "Mydescription",
-      "tag": "general",
-      "date": "2023-07-03T05:53:47.699Z",
-      "__v": 0
-    }];
+    const intialNotes = [];
     const [notes, setNotes] = useState(intialNotes);
 
     const fetchAllNotes = async () =>{
@@ -25,8 +17,8 @@ const NoteState = (props) =>{
                "auth-token": localStorage.getItem('authToken')
              }
           });
-        const fnotes = await response.json(); // parses JSON response into native JavaScript objects
-        setNotes(notes.concat(fnotes))
+        const notes = await response.json(); // parses JSON response into native JavaScript objects
+        setNotes(notes.notes)
     }
 
     const addNote = async (title, description, tag) =>{

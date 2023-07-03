@@ -43,10 +43,6 @@ const Login = () => {
   return (
     <>
       <Alerts alert={alert} />
-      <div class="spinner-border" id='spinner' hidden='true' role="status">
-          <span class="visually-hidden">Loading...</span>
-      </div>
-
       <div className='container'>
         <div className="row">
           <div className="col-md-6 col-lg-6 col-xl-5">
@@ -64,7 +60,9 @@ const Login = () => {
               <label htmlFor="password" className="form-label">Password</label>
               <input type="password" className="form-control" name='password' id="password" onChange={onValueChange} required />
             </div>
-            <button type="submit" className="btn btn-primary">Login</button>
+            <button type="submit" className="btn btn-primary">Login  <div class="spinner-border spinner-border-sm" id='spinner' hidden='true' role="status">
+          <span class="visually-hidden">Loading...</span>
+          </div></button>
             <div className="mb-3 my-5">
               <div id="emailHelp" className="form-text">New User? Register here! won't take more than a mintue &#128150;</div>
               <Link
