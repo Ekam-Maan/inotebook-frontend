@@ -87,6 +87,7 @@ const Notes = () => {
                                 <NoteItem key={note._id} updateNote={updateNote} note={note} />
                            </div>
                 })}
+
             </div>
             </div>
         </>

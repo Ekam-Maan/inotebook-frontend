@@ -26,7 +26,7 @@ const NoteState = (props) =>{
              }
           });
         const fnotes = await response.json(); // parses JSON response into native JavaScript objects
-        alert("fetchallNotes called " + localStorage.getItem('authToken'))
+       // alert("fetchallNotes called " + localStorage.getItem('authToken'))
         setNotes(notes.concat(fnotes.notes))
     }
 
